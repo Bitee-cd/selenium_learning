@@ -16,15 +16,18 @@ service.start()
 driver = webdriver.Remote(service.service_url)
 driver.get(URL)
 
+wait = WebDriverWait(driver,15)
+
 try:
     #scroll to bottom of the page
-    #driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-
+    # driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
     #locate back to top button
-    button = WebDriverWait(driver,5).until(
-        EC.presence_of_element_located((By.LINK_TEXT,"contact"))
+    button = wait.until(
+        EC.presence_of_element_located((By.CSS_SELECTOR,"#comp-kyocojds > a > div"))
     )
     button.click()
+    
+    # wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,"#comp-kyocojds > a"))).click()
 
 except:
     driver.close()
