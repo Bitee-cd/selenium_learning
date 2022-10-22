@@ -79,11 +79,13 @@ class Portfolio_Test():
         for i in project:
             i.click()
             time.sleep(5)
-            next = wait.until(EC.presence_of_element_located((By.XPATH,"//div[@class='_2fmZJ']//*[name()='svg']")))
-            if next:
+            try:
+                next = wait.until(EC.presence_of_element_located((By.XPATH,"//div[@class='_2fmZJ']//*[name()='svg']")))
                 for j in range(3):
                     next.click()
                     time.sleep(7)
+            except:
+                return
             close= wait.until(EC.presence_of_element_located((By.XPATH,"//div[@class='_2DPZA']//*[name()='svg']")))
             close.click()
             time.sleep(3)
@@ -165,10 +167,10 @@ work.open_page()
 # work.switch_to_previous_window()
 # work.click_on_contact_button()
 # work.scroll_to_top()
-# work.go_to_selected_projets()
+work.go_to_selected_projets()
 # work.hover_automation_testing()
 # work.scroll_to_article_Section()
 # work.click_like_button()
 # work.fill_in_contact_details()
-work.click_on_social_links()
+# work.click_on_social_links()
 work.close_work()
