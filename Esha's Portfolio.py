@@ -23,6 +23,7 @@ class Portfolio_Test():
     def open_page(self):
         driver.get(URL)
         driver.maximize_window()
+        time.sleep(3)
     def scroll_to_bottom(self):
         # Scroll to Bottom of Webpage
         driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
@@ -34,7 +35,7 @@ class Portfolio_Test():
         scroll.click()
         time.sleep(5)
 
-    def cick_about_link(self):
+    def click_about_link(self):
         #click on the about link
         about = driver.find_element(By.CSS_SELECTOR,"a[class='StylableButton2545352419__root style-kyocs4f6__root StylableButton2545352419__link'] div[class='StylableButton2545352419__container']")
         about.click()
@@ -72,28 +73,24 @@ class Portfolio_Test():
         projects = driver.find_element(By.CSS_SELECTOR,"div[data-mesh-id='comp-kyocojgtinlineContent-gridContainer']")
         project = projects.find_elements(By.CLASS_NAME,"_3Gr0h")
 
-        #wait definition
-
-
         # #looping through the projects and clicking cancel
         for i in project:
             i.click()
             time.sleep(5)
-            try:
-                next = wait.until(EC.presence_of_element_located((By.XPATH,"//div[@class='_2fmZJ']//*[name()='svg']")))
-                for j in range(3):
-                    next.click()
-                    time.sleep(7)
-            except:
-                return
+            # try:
+            #     next = wait.until(EC.presence_of_element_located((By.XPATH,"//div[@class='_2fmZJ']//*[name()='svg']")))
+            #     for j in range(2):
+            #         next.click()
+            #         time.sleep(7)
+            # finally:
             close= wait.until(EC.presence_of_element_located((By.XPATH,"//div[@class='_2DPZA']//*[name()='svg']")))
             close.click()
-            time.sleep(3)
+        time.sleep(3)
 
 
     def hover_automation_testing(self):
         #find automating testing and hover over
-        section = driver.find_element(By.CSS_SELECTOR,"section[id='comp-l3onkfps'] div[class='_1uldx']")
+        section = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,"section[id='comp-l3onkfps'] div[class='_1uldx']")))
         automated_testing = section.find_element(By.CSS_SELECTOR,"#comp-l3onn2sv_video")
         ActionChains(driver) \
             .move_to_element(automated_testing) \
@@ -114,11 +111,12 @@ class Portfolio_Test():
         view_more.click()
         time.sleep(5)
     def click_like_button(self):
-        like=wait.until(EC.presence_of_element_located((By.XPATH,"//div[@class='like-button LtaU1R']//*[name()='svg']")))
+        like= wait.until(EC.presence_of_element_located((By.XPATH,"//div[@class='like-button LtaU1R']//*[name()='svg']")))
         like.click()
         time.sleep(5)
         back = wait.until(EC.presence_of_element_located((By.XPATH,"//a[@class='_2wYm8']//div[@class='_3bLYT _2OIRR']//*[name()='svg']")))
         time.sleep(5)
+        back.click()
 
     def fill_in_contact_details(self):
         contact =wait.until(EC.presence_of_element_located((By.XPATH,"//section[@id='comp-kyocojnl']")))
@@ -159,18 +157,19 @@ class Portfolio_Test():
 
 work = Portfolio_Test()
 work.open_page()
-# work.scroll_to_bottom()
-# work.click_top_button()
-# work.cick_about_link()
-# work.switch_to_new_window()
-# work.click_on_back_button()
-# work.switch_to_previous_window()
-# work.click_on_contact_button()
-# work.scroll_to_top()
+work.scroll_to_bottom()
+work.click_top_button()
+work.click_about_link()
+work.switch_to_new_window()
+work.click_on_back_button()
+work.switch_to_previous_window()
+work.click_on_contact_button()
+work.scroll_to_top()
 work.go_to_selected_projets()
-# work.hover_automation_testing()
-# work.scroll_to_article_Section()
-# work.click_like_button()
-# work.fill_in_contact_details()
-# work.click_on_social_links()
+work.hover_automation_testing()
+work.scroll_to_article_Section()
+work.click_like_button()
+work.fill_in_contact_details()
+work.click_on_social_links()
+work.scroll_to_top()
 work.close_work()
